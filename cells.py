@@ -71,6 +71,14 @@ class Cell:
                 for cell_obj in self.surrounded_cells:
                     cell_obj.show_cell()
             self.show_cell()
+            # if cell_count is equal to cells left count, player wins:
+            if Cell.cell_count == settings.MINES_PRACTICE:
+                pyautogui.alert('Game is over', "You win!")
+
+        # cancels any other action if cell.is_open
+        self.cell_btn_obj.unbind('<Button-1>')
+        # unbinding events
+        self.cell_btn_obj.unbind('<Button-2>')
 
     def get_cell_by_axis(self, x, y):
         # returns a cell obj based on x, y values

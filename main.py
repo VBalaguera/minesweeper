@@ -34,8 +34,19 @@ top_frame = Frame(
     height=utils.height_prct(25) # 25% of HEIGHT
 )
 
+
+
 # where to start this frame:
 top_frame.place(x=0, y=0)  # accepts px values for x and y
+
+game_title = Label(
+    top_frame,
+    bg='black',
+    fg='white',
+    text='Minesweeper',
+    font=('Courier', 36, 'bold') # todo: improve styles
+)
+game_title.place(x=utils.weight_prct(25), y=0)
 
 # left-side frame:
 left_frame = Frame(
