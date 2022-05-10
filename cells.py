@@ -31,6 +31,7 @@ class Cell:
             location,  # location
             width=1,
             height=1,
+            # for some reason, this makes cells squares
             # todo: find a way to make these cells responsive?
             # text=f'{self.x},{self.y}'
             # TODO: improve button's styles;
@@ -72,7 +73,7 @@ class Cell:
                     cell_obj.show_cell()
             self.show_cell()
             # if cell_count is equal to cells left count, player wins:
-            if Cell.cell_count == settings.MINES_PRACTICE:
+            if Cell.cell_count == settings.MINES_EXPERT:
                 pyautogui.alert('Game is over', "You win!")
 
         # cancels any other action if cell.is_open
@@ -81,7 +82,8 @@ class Cell:
         self.cell_btn_obj.unbind('<Button-2>')
 
     def get_cell_by_axis(self, x, y):
-        # returns a cell obj based on x, y values
+        """# returns a cell obj based on x, y values"""
+
         for cell in Cell.all:
             if cell.x == x and cell.y == y:
                 return cell
@@ -115,7 +117,7 @@ class Cell:
 
     @property  # todo: study this
     def surrounded_cells_mines_length(self):
-        # counts mines in surrounded_cells
+        """# counts mines in surrounded_cells"""
         counter = 0
         for cell in self.surrounded_cells:
             if cell.is_mine:
@@ -163,7 +165,7 @@ class Cell:
     # todo: this is a static method;
     @staticmethod
     def randomize_mines():
-        # turns some cells and turns them into mines;
+        """# turns some cells and turns them into mines;"""
         # on easy/practice mode; only 10 mines!!!
         # my_list = ['Al', 'Bea', 'Cal']
         # names = random.sample(my_list, 2)
@@ -172,7 +174,7 @@ class Cell:
         # the logic here is:
         picked_cells = random.sample(
             Cell.all,  # passing all instances;
-            settings.MINES_PRACTICE
+            settings.MINES_EXPERT
             # because easy/practice difficulty!
             # TODO: change this to expert when width/height are fixed;
         )

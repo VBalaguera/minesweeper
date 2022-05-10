@@ -31,7 +31,7 @@ top_frame = Frame(
     root,
     bg='black',  # just to differentiate it
     width=settings.WIDTH,  # same as window's
-    height=utils.height_prct(25) # 25% of HEIGHT
+    height=utils.height_prct(10) # 25% of HEIGHT
 )
 
 
@@ -46,27 +46,27 @@ game_title = Label(
     text='Minesweeper',
     font=('Courier', 36, 'bold') # todo: improve styles
 )
-game_title.place(x=utils.weight_prct(25), y=0)
+game_title.place(x=utils.weight_prct(40), y=0)
 
 # left-side frame:
 left_frame = Frame(
     root,
     bg='black',
-    width=utils.weight_prct(25),  # 1/4 of total width
-    height=utils.height_prct(75)  # we already covered 180px on a 720px, so
+    width=utils.weight_prct(15),  # 1/4 of total width
+    height=utils.height_prct(85)  # we already covered 180px on a 720px, so
 )
-left_frame.place(x=0, y=utils.height_prct(25))
+left_frame.place(x=0, y=utils.height_prct(15))
 
 
 center_frame = Frame(
     root,
     bg='black',
-    width=utils.weight_prct(75),
-    height=utils.height_prct(75)
+    width=utils.weight_prct(85),
+    height=utils.height_prct(90)
 )
 center_frame.place(
-    x=utils.weight_prct(25),
-    y=utils.height_prct(25)
+    x=utils.weight_prct(15),
+    y=utils.height_prct(10)
 )
 
 
@@ -86,8 +86,8 @@ center_frame.place(
 
 # TODO: change these quantities to 30x16;
 #  that will require fixing the canvas width/height
-for x in range(settings.COLUMNS_PRACTICE):  # columns
-    for y in range(settings.ROWS_PRACTICE):  # rows
+for x in range(settings.COLUMNS_EXPERT):  # columns
+    for y in range(settings.ROWS_EXPERT):  # rows
         c = Cell(x, y) # mandatory args
         c.create_btn_obj(center_frame)
         c.cell_btn_obj.grid(column=x, row=y)
@@ -102,6 +102,7 @@ Cell.randomize_mines() # TODO: pay attention to this;
 for c in Cell.all:
     if c.is_mine == True:
         print(c)
+
 
 # run window
 root.mainloop()  # opens a window, closable by clicking x
